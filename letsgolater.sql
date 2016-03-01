@@ -3,16 +3,23 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2016 at 01:22 AM
+-- Generation Time: Mar 01, 2016 at 03:23 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
 --
 -- Database: `letsgolater`
 --
+DROP DATABASE `letsgolater`;
 CREATE DATABASE IF NOT EXISTS `letsgolater` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `letsgolater`;
 
@@ -84,36 +91,36 @@ INSERT INTO `dresscode` (`iddresscode`, `dresscode`) VALUES
 
 DROP TABLE IF EXISTS `event`;
 CREATE TABLE IF NOT EXISTS `event` (
-  `idevents` int(11) NOT NULL AUTO_INCREMENT,
+  `idevent` int(11) NOT NULL AUTO_INCREMENT,
   `photo` varchar(255) NOT NULL,
   `description` varchar(300) NOT NULL,
   `date` datetime NOT NULL,
-  `interest_idinterest` int(11) NOT NULL,
   `capacity` int(11) NOT NULL,
   `price` double(10,2) NOT NULL,
   `name` varchar(45) NOT NULL,
   `venue_idvenue` int(11) NOT NULL,
   `dresscode_iddresscode` int(11) NOT NULL,
-  PRIMARY KEY (`idevents`),
+  PRIMARY KEY (`idevent`),
   KEY `fk_event_venue1_idx` (`venue_idvenue`),
   KEY `fk_event_dresscode1_idx` (`dresscode_iddresscode`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`idevents`, `photo`, `description`, `date`, `interest_idinterest`, `capacity`, `price`, `name`, `venue_idvenue`, `dresscode_iddresscode`) VALUES
-(1, 'photo.jpg', 'Loud Music', '2001-01-01 00:00:00', 1, 10000, 300.00, 'Ultra', 1, 8),
-(2, 'photo.jpg', 'Kids Reading', '2001-01-01 00:00:00', 2, 100, 0.00, 'Storytelling Fair', 2, 6),
-(3, 'photo.jpg', 'Yearly Fair Rides', '2001-01-01 00:00:00', 3, 1000, 30.00, 'Santa''s Enchanted Forest', 3, 10),
-(4, 'photo.jpg', 'Test your surfing Skills', '2001-01-01 00:00:00', 4, 100, 30.00, 'Flowrider Contest', 4, 5),
-(5, 'photo.jpg', 'VIPs only', '2001-01-01 00:00:00', 5, 100, 1000.00, 'Diplomatic Event', 5, 1),
-(6, 'photo.jpg', 'different companies hiring', '2001-01-01 00:00:00', 6, 300, 30.00, 'Job Fair', 6, 7),
-(7, 'photo.jpg', 'win many doorprizes', '2001-01-01 00:00:00', 7, 100, 0.00, 'Raffle', 7, 4),
-(8, 'photo.jpg', 'invitees only', '2001-01-01 00:00:00', 8, 200, 0.00, 'Davis Wedding', 8, 1),
-(9, 'photo.jpg', 'meet MVP''s', '2001-01-01 00:00:00', 9, 100, 0.00, 'College Football Awards', 9, 9),
-(10, 'photo.jpg', 'best in show for the city', '2001-01-01 00:00:00', 10, 100, 0.00, 'City Dog Show', 10, 3);
+INSERT INTO `event` (`idevent`, `photo`, `description`, `date`, `capacity`, `price`, `name`, `venue_idvenue`, `dresscode_iddresscode`) VALUES
+(1, 'photo.jpg', 'Loud Music', '2001-01-01 00:00:00', 10000, 300.00, 'Ultra', 1, 8),
+(2, 'photo.jpg', 'Kids Reading', '2001-01-01 00:00:00', 100, 0.00, 'Storytelling Fair', 2, 6),
+(3, 'photo.jpg', 'Yearly Fair Rides', '2001-01-01 00:00:00', 1000, 30.00, 'Santa''s Enchanted Forest', 3, 10),
+(4, 'photo.jpg', 'Test your surfing Skills', '2001-01-01 00:00:00', 100, 30.00, 'Flowrider Contest', 4, 5),
+(5, 'photo.jpg', 'VIPs only', '2001-01-01 00:00:00', 100, 1000.00, 'Diplomatic Event', 5, 1),
+(6, 'photo.jpg', 'different companies hiring', '2001-01-01 00:00:00', 300, 30.00, 'Job Fair', 6, 7),
+(7, 'photo.jpg', 'win many doorprizes', '2001-01-01 00:00:00', 100, 0.00, 'Raffle', 7, 4),
+(8, 'photo.jpg', 'invitees only', '2001-01-01 00:00:00', 200, 0.00, 'Davis Wedding', 8, 1),
+(9, 'photo.jpg', 'meet MVP''s', '2001-01-01 00:00:00', 100, 0.00, 'College Football Awards', 9, 9),
+(10, 'photo.jpg', 'best in show for the city', '2001-01-01 00:00:00', 100, 0.00, 'City Dog Show', 10, 3),
+(11, '', '', '0000-00-00 00:00:00', 0, 0.00, 'Nicky Jam', 11, 8);
 
 -- --------------------------------------------------------
 
@@ -158,7 +165,14 @@ CREATE TABLE IF NOT EXISTS `interest_match_event` (
   PRIMARY KEY (`interest_idinterest`,`events_idevents`),
   KEY `fk_Interest_has_Events_Events1_idx` (`events_idevents`),
   KEY `fk_Interest_has_Events_Interest1_idx` (`interest_idinterest`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `interest_match_event`
+--
+
+INSERT INTO `interest_match_event` (`interest_idinterest`, `events_idevents`) VALUES
+(1, 11);
 
 -- --------------------------------------------------------
 
@@ -179,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `city_idcity` int(11) NOT NULL,
   PRIMARY KEY (`iduser`,`city_idcity`),
   KEY `fk_user_city1_idx` (`city_idcity`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `user`
@@ -191,11 +205,11 @@ INSERT INTO `user` (`iduser`, `username`, `birthdate`, `email`, `gender`, `passw
 (3, 'georgio', '2001-01-01', 'someone@email.com', 1, 'password', '123-456-7890', 'Web Design', 3),
 (4, 'jorge', '2001-01-01', 'someone@email.com', 1, 'password', '123-456-7890', 'Web Design', 4),
 (5, 'danny', '2001-01-01', 'someone@email.com', 1, 'password', '123-456-7890', 'Web Design', 5),
-(6, 'ionanis', '2001-01-01', 'someone@email.com', 1, 'password', '123-456-7890', 'Web Design', 6),
 (7, 'adam', '2001-01-01', 'someone@email.com', 1, 'password', '123-456-7890', 'Web Design', 7),
 (8, 'daniela', '2001-01-01', 'someone@email.com', 0, 'password', '123-456-7890', 'Web Design', 8),
 (9, 'katie', '2001-01-01', 'someone@email.com', 0, 'password', '123-456-7890', 'Web Design', 9),
-(10, 'rima', '2001-01-01', 'someone@email.com', 0, 'password', '123-456-7890', 'Web Design', 10);
+(10, 'rima', '2001-01-01', 'rgerhard@aii.edu', 0, 'password', '123-456-7890', 'Web Design', 10),
+(12, 'tony', '0000-00-00', '', 1, '', '', '', 3);
 
 -- --------------------------------------------------------
 
@@ -276,7 +290,7 @@ ALTER TABLE `event`
 -- Constraints for table `interest_match_event`
 --
 ALTER TABLE `interest_match_event`
-  ADD CONSTRAINT `fk_Interest_has_Events_Events1` FOREIGN KEY (`events_idevents`) REFERENCES `event` (`idevents`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Interest_has_Events_Events1` FOREIGN KEY (`events_idevents`) REFERENCES `event` (`idevent`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Interest_has_Events_Interest1` FOREIGN KEY (`interest_idinterest`) REFERENCES `interest` (`idinterest`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -289,7 +303,7 @@ ALTER TABLE `user`
 -- Constraints for table `user_favorites_events`
 --
 ALTER TABLE `user_favorites_events`
-  ADD CONSTRAINT `fk_user_has_Events_Events1` FOREIGN KEY (`events_idevents`) REFERENCES `event` (`idevents`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_user_has_Events_Events1` FOREIGN KEY (`events_idevents`) REFERENCES `event` (`idevent`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_user_has_Events_user1` FOREIGN KEY (`user_iduser`) REFERENCES `user` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -298,3 +312,7 @@ ALTER TABLE `user_favorites_events`
 ALTER TABLE `user_has_interest`
   ADD CONSTRAINT `fk_user_has_Interest_Interest1` FOREIGN KEY (`interest_idinterest`) REFERENCES `interest` (`idinterest`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_user_has_Interest_user1` FOREIGN KEY (`user_iduser`) REFERENCES `user` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
