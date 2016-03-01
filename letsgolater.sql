@@ -3,18 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2016 at 12:52 AM
+-- Generation Time: Mar 01, 2016 at 01:22 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `letsgolater`
@@ -33,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `city` (
   `idcity` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idcity`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `city`
@@ -49,7 +43,8 @@ INSERT INTO `city` (`idcity`, `name`) VALUES
 (7, 'Hialeah'),
 (8, 'Miami Lakes'),
 (9, 'Miami Gardens'),
-(10, 'Coral Gables');
+(10, 'Coral Gables'),
+(11, 'Orlando');
 
 -- --------------------------------------------------------
 
@@ -62,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `dresscode` (
   `iddresscode` int(11) NOT NULL AUTO_INCREMENT,
   `dresscode` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`iddresscode`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `dresscode`
@@ -78,7 +73,8 @@ INSERT INTO `dresscode` (`iddresscode`, `dresscode`) VALUES
 (7, 'Business Casual'),
 (8, 'Street Wear'),
 (9, 'Black Tie Optional'),
-(10, 'Festive');
+(10, 'Festive'),
+(23, 'Chic');
 
 -- --------------------------------------------------------
 
@@ -130,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `interest` (
   `idinterest` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idinterest`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `interest`
@@ -146,7 +142,8 @@ INSERT INTO `interest` (`idinterest`, `name`) VALUES
 (7, 'Contest'),
 (8, 'Romance'),
 (9, 'Sports'),
-(10, 'Pets');
+(10, 'Pets'),
+(16, 'Adventure');
 
 -- --------------------------------------------------------
 
@@ -171,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `interest_match_event` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `idtable1` int(11) NOT NULL AUTO_INCREMENT,
+  `iduser` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(90) NOT NULL,
   `birthdate` date NOT NULL,
   `email` varchar(250) NOT NULL,
@@ -180,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `phone` varchar(16) NOT NULL,
   `job` varchar(45) NOT NULL,
   `city_idcity` int(11) NOT NULL,
-  PRIMARY KEY (`idtable1`,`city_idcity`),
+  PRIMARY KEY (`iduser`,`city_idcity`),
   KEY `fk_user_city1_idx` (`city_idcity`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
@@ -188,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`idtable1`, `username`, `birthdate`, `email`, `gender`, `password`, `phone`, `job`, `city_idcity`) VALUES
+INSERT INTO `user` (`iduser`, `username`, `birthdate`, `email`, `gender`, `password`, `phone`, `job`, `city_idcity`) VALUES
 (1, 'erika', '2001-01-01', 'someone@email.com', 0, 'password', '123-456-7890', 'Web Design', 1),
 (2, 'nikki', '2001-01-01', 'someone@email.com', 0, 'password', '123-456-7890', 'Web Design', 2),
 (3, 'georgio', '2001-01-01', 'someone@email.com', 1, 'password', '123-456-7890', 'Web Design', 3),
@@ -208,11 +205,11 @@ INSERT INTO `user` (`idtable1`, `username`, `birthdate`, `email`, `gender`, `pas
 
 DROP TABLE IF EXISTS `user_favorites_events`;
 CREATE TABLE IF NOT EXISTS `user_favorites_events` (
-  `user_idtable1` int(11) NOT NULL AUTO_INCREMENT,
+  `user_iduser` int(11) NOT NULL AUTO_INCREMENT,
   `events_idevents` int(11) NOT NULL,
-  PRIMARY KEY (`user_idtable1`,`events_idevents`),
+  PRIMARY KEY (`user_iduser`,`events_idevents`),
   KEY `fk_user_has_Events_Events1_idx` (`events_idevents`),
-  KEY `fk_user_has_Events_user1_idx` (`user_idtable1`)
+  KEY `fk_user_has_Events_user1_idx` (`user_iduser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -223,11 +220,11 @@ CREATE TABLE IF NOT EXISTS `user_favorites_events` (
 
 DROP TABLE IF EXISTS `user_has_interest`;
 CREATE TABLE IF NOT EXISTS `user_has_interest` (
-  `user_idtable1` int(11) NOT NULL AUTO_INCREMENT,
+  `user_iduser` int(11) NOT NULL AUTO_INCREMENT,
   `interest_idinterest` int(11) NOT NULL,
-  PRIMARY KEY (`user_idtable1`,`interest_idinterest`),
+  PRIMARY KEY (`user_iduser`,`interest_idinterest`),
   KEY `fk_user_has_Interest_Interest1_idx` (`interest_idinterest`),
-  KEY `fk_user_has_Interest_user1_idx` (`user_idtable1`)
+  KEY `fk_user_has_Interest_user1_idx` (`user_iduser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -245,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `venue` (
   `parking` varchar(10) DEFAULT NULL,
   `address` varchar(55) DEFAULT NULL,
   PRIMARY KEY (`idvenue`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `venue`
@@ -261,7 +258,8 @@ INSERT INTO `venue` (`idvenue`, `photo`, `name`, `city`, `parking`, `address`) V
 (7, NULL, 'Westland Mall', '7', NULL, NULL),
 (8, NULL, 'Hotel Indigo', '8', NULL, NULL),
 (9, NULL, 'Sun Life Stadium', '9', NULL, NULL),
-(10, NULL, 'Miracle Mile', '10', NULL, NULL);
+(10, NULL, 'Miracle Mile', '10', NULL, NULL),
+(11, NULL, 'AA Arena', NULL, NULL, NULL);
 
 --
 -- Constraints for dumped tables
@@ -292,15 +290,11 @@ ALTER TABLE `user`
 --
 ALTER TABLE `user_favorites_events`
   ADD CONSTRAINT `fk_user_has_Events_Events1` FOREIGN KEY (`events_idevents`) REFERENCES `event` (`idevents`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_user_has_Events_user1` FOREIGN KEY (`user_idtable1`) REFERENCES `user` (`idtable1`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_user_has_Events_user1` FOREIGN KEY (`user_iduser`) REFERENCES `user` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `user_has_interest`
 --
 ALTER TABLE `user_has_interest`
   ADD CONSTRAINT `fk_user_has_Interest_Interest1` FOREIGN KEY (`interest_idinterest`) REFERENCES `interest` (`idinterest`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_user_has_Interest_user1` FOREIGN KEY (`user_idtable1`) REFERENCES `user` (`idtable1`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  ADD CONSTRAINT `fk_user_has_Interest_user1` FOREIGN KEY (`user_iduser`) REFERENCES `user` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
