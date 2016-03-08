@@ -34,10 +34,10 @@ $event["date"] = "Friday, March 11th 2016";
 $query = "SELECT * FROM event;";
 $result = mysqli_query($link, $query);
 
-$row = mysqli_fetch_assoc($result);
+while ($row = mysqli_fetch_assoc($result)):
 //var_dump($row);
 /* Output the event price and the description */
-
+/* Update event photos */
 ?>
 <div>
 <img src="<?= $row["photo"] ?>">
@@ -45,6 +45,8 @@ $row = mysqli_fetch_assoc($result);
 <h4><?= $row["description"]; ?></h4>
 <h4><?= $row["price"]; ?></h4>
 </div>
+<?php endwhile; ?>
+
 <div>
 <img src="<?= $event["photo"] ?>">
 <h3><?= $event["name"]; ?></h3>
