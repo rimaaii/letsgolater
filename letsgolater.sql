@@ -3,25 +3,16 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2016 at 03:23 AM
+-- Generation Time: Mar 08, 2016 at 03:20 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
 -- Database: `letsgolater`
 --
-DROP DATABASE `letsgolater`;
-CREATE DATABASE IF NOT EXISTS `letsgolater` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `letsgolater`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +20,6 @@ USE `letsgolater`;
 -- Table structure for table `city`
 --
 
-DROP TABLE IF EXISTS `city`;
 CREATE TABLE IF NOT EXISTS `city` (
   `idcity` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -59,7 +49,6 @@ INSERT INTO `city` (`idcity`, `name`) VALUES
 -- Table structure for table `dresscode`
 --
 
-DROP TABLE IF EXISTS `dresscode`;
 CREATE TABLE IF NOT EXISTS `dresscode` (
   `iddresscode` int(11) NOT NULL AUTO_INCREMENT,
   `dresscode` varchar(45) DEFAULT NULL,
@@ -89,7 +78,6 @@ INSERT INTO `dresscode` (`iddresscode`, `dresscode`) VALUES
 -- Table structure for table `event`
 --
 
-DROP TABLE IF EXISTS `event`;
 CREATE TABLE IF NOT EXISTS `event` (
   `idevent` int(11) NOT NULL AUTO_INCREMENT,
   `photo` varchar(255) NOT NULL,
@@ -110,17 +98,17 @@ CREATE TABLE IF NOT EXISTS `event` (
 --
 
 INSERT INTO `event` (`idevent`, `photo`, `description`, `date`, `capacity`, `price`, `name`, `venue_idvenue`, `dresscode_iddresscode`) VALUES
-(1, 'photo.jpg', 'Loud Music', '2001-01-01 00:00:00', 10000, 300.00, 'Ultra', 1, 8),
-(2, 'photo.jpg', 'Kids Reading', '2001-01-01 00:00:00', 100, 0.00, 'Storytelling Fair', 2, 6),
-(3, 'photo.jpg', 'Yearly Fair Rides', '2001-01-01 00:00:00', 1000, 30.00, 'Santa''s Enchanted Forest', 3, 10),
-(4, 'photo.jpg', 'Test your surfing Skills', '2001-01-01 00:00:00', 100, 30.00, 'Flowrider Contest', 4, 5),
-(5, 'photo.jpg', 'VIPs only', '2001-01-01 00:00:00', 100, 1000.00, 'Diplomatic Event', 5, 1),
-(6, 'photo.jpg', 'different companies hiring', '2001-01-01 00:00:00', 300, 30.00, 'Job Fair', 6, 7),
-(7, 'photo.jpg', 'win many doorprizes', '2001-01-01 00:00:00', 100, 0.00, 'Raffle', 7, 4),
-(8, 'photo.jpg', 'invitees only', '2001-01-01 00:00:00', 200, 0.00, 'Davis Wedding', 8, 1),
-(9, 'photo.jpg', 'meet MVP''s', '2001-01-01 00:00:00', 100, 0.00, 'College Football Awards', 9, 9),
-(10, 'photo.jpg', 'best in show for the city', '2001-01-01 00:00:00', 100, 0.00, 'City Dog Show', 10, 3),
-(11, '', '', '0000-00-00 00:00:00', 0, 0.00, 'Nicky Jam', 11, 8);
+(1, 'http://bloggingtips.moneyreigninc.netdna-cdn.com/wp-content/uploads/2014/12/Event-Blogging-Strategies.jpg', 'The world''s premier electronic music festival, boasting elite DJs and unparalleled production located in the beautiful city of Miami.', '2001-01-01 00:00:00', 10000, 150.00, 'Ultra', 1, 8),
+(2, 'http://bloggingtips.moneyreigninc.netdna-cdn.com/wp-content/uploads/2014/12/Event-Blogging-Strategies.jpg', 'Kids Reading', '2001-01-01 00:00:00', 100, 0.00, 'Storytelling Fair', 2, 6),
+(3, 'http://bloggingtips.moneyreigninc.netdna-cdn.com/wp-content/uploads/2014/12/Event-Blogging-Strategies.jpg', 'Yearly Fair Rides', '2001-01-01 00:00:00', 1000, 30.00, 'Santa''s Enchanted Forest', 3, 10),
+(4, 'http://bloggingtips.moneyreigninc.netdna-cdn.com/wp-content/uploads/2014/12/Event-Blogging-Strategies.jpg', 'Test your surfing Skills', '2001-01-01 00:00:00', 100, 30.00, 'Flowrider Contest', 4, 5),
+(5, 'http://bloggingtips.moneyreigninc.netdna-cdn.com/wp-content/uploads/2014/12/Event-Blogging-Strategies.jpg', 'VIPs only', '2001-01-01 00:00:00', 100, 1000.00, 'Diplomatic Event', 5, 1),
+(6, 'http://bloggingtips.moneyreigninc.netdna-cdn.com/wp-content/uploads/2014/12/Event-Blogging-Strategies.jpg', 'different companies hiring', '2001-01-01 00:00:00', 300, 30.00, 'Job Fair', 6, 7),
+(7, 'http://bloggingtips.moneyreigninc.netdna-cdn.com/wp-content/uploads/2014/12/Event-Blogging-Strategies.jpg', 'win many doorprizes', '2001-01-01 00:00:00', 100, 0.00, 'Raffle', 7, 4),
+(8, 'http://bloggingtips.moneyreigninc.netdna-cdn.com/wp-content/uploads/2014/12/Event-Blogging-Strategies.jpg', 'invitees only', '2001-01-01 00:00:00', 200, 0.00, 'Davis Wedding', 8, 1),
+(9, 'http://bloggingtips.moneyreigninc.netdna-cdn.com/wp-content/uploads/2014/12/Event-Blogging-Strategies.jpg', 'meet MVP''s', '2001-01-01 00:00:00', 100, 0.00, 'College Football Awards', 9, 9),
+(10, 'http://bloggingtips.moneyreigninc.netdna-cdn.com/wp-content/uploads/2014/12/Event-Blogging-Strategies.jpg', 'best in show for the city', '2001-01-01 00:00:00', 100, 0.00, 'City Dog Show', 10, 3),
+(11, 'http://bloggingtips.moneyreigninc.netdna-cdn.com/wp-content/uploads/2014/12/Event-Blogging-Strategies.jpg', '', '0000-00-00 00:00:00', 0, 0.00, 'Nicky Jam', 11, 8);
 
 -- --------------------------------------------------------
 
@@ -128,7 +116,6 @@ INSERT INTO `event` (`idevent`, `photo`, `description`, `date`, `capacity`, `pri
 -- Table structure for table `interest`
 --
 
-DROP TABLE IF EXISTS `interest`;
 CREATE TABLE IF NOT EXISTS `interest` (
   `idinterest` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -158,7 +145,6 @@ INSERT INTO `interest` (`idinterest`, `name`) VALUES
 -- Table structure for table `interest_match_event`
 --
 
-DROP TABLE IF EXISTS `interest_match_event`;
 CREATE TABLE IF NOT EXISTS `interest_match_event` (
   `interest_idinterest` int(11) NOT NULL AUTO_INCREMENT,
   `events_idevents` int(11) NOT NULL,
@@ -180,7 +166,6 @@ INSERT INTO `interest_match_event` (`interest_idinterest`, `events_idevents`) VA
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `iduser` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(90) NOT NULL,
@@ -217,7 +202,6 @@ INSERT INTO `user` (`iduser`, `username`, `birthdate`, `email`, `gender`, `passw
 -- Table structure for table `user_favorites_events`
 --
 
-DROP TABLE IF EXISTS `user_favorites_events`;
 CREATE TABLE IF NOT EXISTS `user_favorites_events` (
   `user_iduser` int(11) NOT NULL AUTO_INCREMENT,
   `events_idevents` int(11) NOT NULL,
@@ -232,7 +216,6 @@ CREATE TABLE IF NOT EXISTS `user_favorites_events` (
 -- Table structure for table `user_has_interest`
 --
 
-DROP TABLE IF EXISTS `user_has_interest`;
 CREATE TABLE IF NOT EXISTS `user_has_interest` (
   `user_iduser` int(11) NOT NULL AUTO_INCREMENT,
   `interest_idinterest` int(11) NOT NULL,
@@ -247,7 +230,6 @@ CREATE TABLE IF NOT EXISTS `user_has_interest` (
 -- Table structure for table `venue`
 --
 
-DROP TABLE IF EXISTS `venue`;
 CREATE TABLE IF NOT EXISTS `venue` (
   `idvenue` int(11) NOT NULL AUTO_INCREMENT,
   `photo` varchar(250) DEFAULT NULL,
@@ -312,7 +294,3 @@ ALTER TABLE `user_favorites_events`
 ALTER TABLE `user_has_interest`
   ADD CONSTRAINT `fk_user_has_Interest_Interest1` FOREIGN KEY (`interest_idinterest`) REFERENCES `interest` (`idinterest`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_user_has_Interest_user1` FOREIGN KEY (`user_iduser`) REFERENCES `user` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
